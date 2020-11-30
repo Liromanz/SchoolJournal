@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</Source>
+    <SmallTileSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</MediumTileSource>
+    <WideTileSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</WideTileSource>
+    <LargeTileSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</LargeTileSource>
+    <AppIconSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\Софи\source\repos\Практическая 18 - Шифрация\laba10uwp\Assets\StoreLogo.backup.png</PackageLogoSource>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,202 @@
+﻿<Page
+    x:Class="laba10uwp.TeacherPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:laba10uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Dark"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush x:Name="gridbg" Stretch="UniformToFill" ImageSource="Background/background.jpg"/>
+        </Grid.Background>
+        <Pivot x:Name="pivotAdmin" Width="Auto">
+            <!--__________________Название__________________-->
+            <Pivot.Title>
+                <Grid Width="{Binding ActualWidth, ElementName=MainGrid}" Margin="0,0,10,0" >
+                    <Grid.Background>
+                        <AcrylicBrush TintColor="#CC000000" TintOpacity="0" />
+                    </Grid.Background>
+                    <TextBlock Text="Преподаватель"/>
+                </Grid>
+            </Pivot.Title>
+            <!--________________Кнопка выйти________________-->
+            <Pivot.RightHeader>
+                <CommandBar OverflowButtonVisibility="Collapsed" IsOpen="False" Opening="CommandBar_Opening" Margin="0,0,10,0">
+                    <CommandBar.Background>
+                        <AcrylicBrush TintColor="#CC000000" TintOpacity="0"/>
+                    </CommandBar.Background>
+                    <AppBarButton Icon="Back" Click="AppBarButton_Click"/>
+                </CommandBar>
+            </Pivot.RightHeader>
+            <!--__________________Элементы__________________-->
+            <PivotItem Padding="50,50,50,50">
+                <PivotItem.Background>
+                    <AcrylicBrush TintColor="#CC000000" TintOpacity="0.2"/>
+                </PivotItem.Background>
+                <PivotItem.Header>
+                    <Grid>
+                        <Grid.Background>
+                            <AcrylicBrush TintColor="#CC000000" TintOpacity="0"/>
+                        </Grid.Background>
+                        <TextBlock Text="Выбор групп"/>
+                    </Grid>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Выбор дисциплины для заполнения журнала" HorizontalAlignment="Center" FontSize="24"/>
+                    <DatePicker x:Name="JournalDatePicker" Grid.Column="3" HorizontalAlignment="Stretch" SelectedDateChanged="JournalDatePicker_SelectedDateChanged"/>
+                    <NavigationViewItemSeparator Grid.Row="1" Grid.ColumnSpan="2"/>
+                    <TextBlock x:Name="dispTextBlock" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="24"/>
+                    <TextBlock x:Name="groupTextBlock" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontSize="24"  Text="{Binding ElementName=groupsListBox, Path=SelectedValue.Content}"/>
+                    <ListBox x:Name="disciplinesListBox" Grid.Row="3" Grid.Column="0" Margin="0,0,10,0" SelectionChanged="disciplinesListBox_SelectionChanged"/>
+                    <ListBox x:Name="groupsListBox" Grid.Row="3" Grid.Column="1" Margin="10,0,00,0" SelectionChanged="groupsListBox_SelectionChanged"/>
+                </Grid>
+            </PivotItem>
+            <!--Выбор групп-->
+
+            <PivotItem Padding="50,50,50,50">
+                <PivotItem.Background>
+                    <AcrylicBrush TintColor="#CC000000" TintOpacity="0.2"/>
+                </PivotItem.Background>
+                <PivotItem.Header>
+                    <Grid>
+                        <Grid.Background>
+                            <AcrylicBrush TintColor="#CC000000" TintOpacity="0"/>
+                        </Grid.Background>
+                        <TextBlock Text="Журнал"/>
+                    </Grid>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="JournalDispTextBox" Grid.Column="0" FontSize="24"/>
+                        <TextBlock x:Name="JournalGroupTextBox" Grid.Column="1" Text="{Binding Text, ElementName=groupTextBlock}" FontSize="24" Padding="0,0,20,0"/>
+                        <CommandBar Grid.Column="2" OverflowButtonVisibility="Collapsed" IsOpen="False" Opening="CommandBar_Opening">
+                            <AppBarButton  Icon="Save" IsCompact="True" Click="AppBarButton_Click_1"/>
+                        </CommandBar>
+                    </Grid>
+                    <ListBox x:Name="listbox" Grid.Row="1"/>
+                </Grid>
+            </PivotItem>
+            <!--Журнал-->
+
+            <PivotItem Padding="50,50,50,50">
+                <PivotItem.Background>
+                    <AcrylicBrush TintColor="#CC000000" TintOpacity="0.2"/>
+                </PivotItem.Background>
+                <PivotItem.Header>
+                    <Grid>
+                        <Grid.Background>
+                            <AcrylicBrush TintColor="#CC000000" TintOpacity="0"/>
+                        </Grid.Background>
+                        <TextBlock Text="Расписание"/>
+                    </Grid>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <!--Выбор группы-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Расписание преподавателя" FontSize="24" Padding="0,0,20,0"/>
+                        <ComboBox x:Name="RaspComboBox" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="RaspComboBox_SelectionChanged"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <!--Все расписание-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <!--Понедельник-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Понедельник" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspMonListBox"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <!--Вторник-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Вторник" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspTueListBox" />
+                        </Grid>
+                        <Grid Grid.Row="3" Grid.Column="0">
+                            <!--Среда-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Среда" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspWenListBox" />
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="2">
+                            <!--Четверг-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Четверг" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspThuListBox" />
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <!--Пятница-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Пятница" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspFriListBox" />
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <!--Суббота-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="Суббота" HorizontalAlignment="Center" FontSize="24"/>
+                            <ListBox Grid.Row="1" x:Name="RaspSatListBox"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </PivotItem>
+            <!--Расписание-->
+        </Pivot>
+    </Grid>
+</Page>
